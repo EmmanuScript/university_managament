@@ -24,9 +24,6 @@ class AdmissionService:
         # Additional business validation: minimum score
         if data.score < 60:
             raise ValueError("Score must be at least 60 to be eligible for admission")
-        
-    
-    def create_admission(self, data):
         return self.repository.create(data)
     
     def get_admission(self, admission_id: int):
