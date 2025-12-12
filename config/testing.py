@@ -1,0 +1,3 @@
+# Configuration: testing.py
+
+config = {}

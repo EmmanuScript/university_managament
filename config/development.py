@@ -1,0 +1,3 @@
+# Configuration: development.py
+
+config = {}

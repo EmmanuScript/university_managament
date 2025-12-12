@@ -1,0 +1,2 @@
+-- Migration 19
+-- Created for database schema

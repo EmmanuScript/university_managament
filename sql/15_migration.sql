@@ -1,0 +1,2 @@
+-- Migration 15
+-- Created for database schema
