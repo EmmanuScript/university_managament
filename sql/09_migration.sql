@@ -1,0 +1,2 @@
+-- Migration 9
+-- Created for database schema

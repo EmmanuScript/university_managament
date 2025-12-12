@@ -1,0 +1,2 @@
+-- Migration 2
+-- Created for database schema
