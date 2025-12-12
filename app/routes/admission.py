@@ -4,17 +4,12 @@ from sqlalchemy.orm import Session
 from app.core.database import get_db
 from app.services.admission_service import AdmissionService
 from app.schemas import AdmissionCreate
-from app.utils.validators import Validators
 
 router = APIRouter()
 
 @router.post("/apply")
 def apply_admission(data: AdmissionCreate, db: Session = Depends(get_db)):
     try:
-        # Additional business logic validation
-        if data.score < 60:
-            raise HTTPException(status_code=400, detail="Score must be at least 60 to apply")
-        
         return AdmissionService(db).create_admission(data)
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))

@@ -1,29 +1,16 @@
 """Admission Service"""
 from app.repositories.admission_repository import AdmissionRepository
-from app.utils.validators import Validators
 from sqlalchemy.orm import Session
 
 class AdmissionService:
     def __init__(self, db: Session):
         self.repository = AdmissionRepository(db)
-        self.validators = Validators()
     
     def create_admission(self, data):
-        # Validate email format
-        if not Validators.validate_email(data.email):
-            raise ValueError(f"Invalid email format: {data.email}")
-        
-        # Validate phone format
-        if not Validators.validate_phone(data.phone):
-            raise ValueError(f"Invalid phone format: {data.phone}")
-        
-        # Validate score range
-        if not Validators.validate_score(data.score):
-            raise ValueError(f"Invalid score: must be between 0 and 100")
-        
-        # Additional business validation: minimum score
+        # Business logic validation: minimum score for eligibility
         if data.score < 60:
             raise ValueError("Score must be at least 60 to be eligible for admission")
+        
         return self.repository.create(data)
     
     def get_admission(self, admission_id: int):
