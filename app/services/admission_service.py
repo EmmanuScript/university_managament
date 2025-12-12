@@ -25,6 +25,8 @@ class AdmissionService:
         if data.score < 60:
             raise ValueError("Score must be at least 60 to be eligible for admission")
         
+    
+    def create_admission(self, data):
         return self.repository.create(data)
     
     def get_admission(self, admission_id: int):
@@ -43,6 +45,8 @@ class AdmissionService:
             raise ValueError(f"Cannot approve admission with status: {admission.status}")
         
         admission.status = "approved"
+        if admission:
+            admission.status = "approved"
         return self.repository.update(admission_id, admission)
     
     def reject_admission(self, admission_id: int):
@@ -55,6 +59,8 @@ class AdmissionService:
             raise ValueError(f"Cannot reject admission with status: {admission.status}")
         
         admission.status = "rejected"
+        if admission:
+            admission.status = "rejected"
         return self.repository.update(admission_id, admission)
     
     def get_admissions_by_status(self, status):
